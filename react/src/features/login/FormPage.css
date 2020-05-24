@@ -1,0 +1,23 @@
+.form-custom {
+  width: 100%;
+  max-width: 400px;
+  margin: auto;
+  padding-top: 100px;
+  padding-bottom: 100px;
+}
+
+.form-message {
+  font-size: 18pt;
+}
+
+.btn-primary {
+  color: #2E3440;
+  background-color: #81A1C1;
+  border-color: #81A1C1;
+}
+
+.btn-primary:hover {
+  color: #2E3440;
+  background-color: #5e81ac;
+  border-color: #5e81ac;
+}
