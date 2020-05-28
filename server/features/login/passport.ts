@@ -14,6 +14,9 @@ const loginStrategy = (passport: PassportStatic) => {
   passport.use(
     'local-login',
     new LocalStrategy({
+      usernameField: 'email',
+      passwordField: 'password',
+      session: false,
     }, async (email: string, password: string, done) => {
       if (typeof email !== 'string' || typeof password !== 'string') {
         return done(null, false, { message: 'invalid input' });
@@ -25,9 +28,7 @@ const loginStrategy = (passport: PassportStatic) => {
         if (compareSync(password, rtn.payload.user.passwordHash)) {
           const { id, group } = rtn.payload.user;
           const jwtPayload: TokenPayloadType = { id, email, group };
-          const token = sign(jwtPayload, jwtSecret, {
-            expiresIn: 60 * 60,
-          });
+          const token = sign(jwtPayload, jwtSecret);
 
           const successRtn: PassportLoginSuccessType = {
             user: rtn.payload.user,

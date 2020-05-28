@@ -3,12 +3,14 @@ import Debug from 'debug';
 import IO from 'socket.io';
 import http from 'http';
 import bodyParser from 'body-parser';
+import path from 'path';
 
 import { serverPort } from './common/config';
 import passport from './server/passport';
 
 import loginRoute from './features/login/routes';
-import settingsRoute from './features/settings/routes';
+import usersRoute from './features/users/routes';
+import chatIo from './features/chat/socketio';
 
 const debug = Debug('index');
 
@@ -25,26 +27,17 @@ app.use(passport.initialize());
 
 // Routes
 app.use('/api/login', loginRoute);
-app.use('/api/settings', settingsRoute);
+app.use('/api/user', usersRoute);
 
-app.get('/', (_, res) => {
-  res.send('express server');
+app.use(express.static(path.join(__dirname, 'client/build')));
+
+// Handles any requests that don't match the ones above
+app.get('*', (_, res) => {
+  res.sendFile(path.join(`${__dirname}/client/build/index.html`));
 });
 
-app.get('/');
+chatIo(io);
 
-io.on('connection', (socket) => {
-  debug('User connected');
-
-  socket.on('message', (msg: {message: string, username: string}) => {
-    debug(`message: ${msg.username}: ${msg.message}`);
-    io.emit('message', msg);
-  });
-
-  socket.on('disconnect', () => {
-    debug('user disconnected');
-  });
-});
 
 server.listen(serverPort, () => {
   debug(`Server started on port ${serverPort}`);

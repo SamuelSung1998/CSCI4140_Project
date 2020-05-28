@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import {
-  Container, Col, Form, ListGroup, Button,
+  Container, Form, ListGroup, Button,
 } from 'react-bootstrap';
 import { useSelector, useDispatch } from 'react-redux';
 import { Formik } from 'formik';
@@ -25,6 +25,8 @@ const settingsSchema = Yup.object().shape({
   email: Yup.string()
     .email('Invalid Email')
     .required('Email is required'),
+  group: Yup.string()
+    .required('Group is required'),
   phone: Yup.string()
     .required('Phone No. is required'),
   password: Yup.string()
@@ -64,7 +66,7 @@ const SettingsForm: React.FC = () => {
 
   return (
     <Container>
-      <h1 className="form-message">Update Settings</h1>
+      <h1>Update Settings</h1>
       {settingsUpdateStatus === SUCCESS
             && (
               <ListGroup>
@@ -100,85 +102,61 @@ const SettingsForm: React.FC = () => {
         validationSchema={settingsSchema}
       >
         {({ handleSubmit, values, handleReset }) => (
-          <Form noValidate className="justify-content-center" onSubmit={handleSubmit}>
-            <Form.Row>
-              <FormTextInput
-                as={Col}
-                md={4}
-                disabled
-                label="User ID: "
-                name="id"
-                placeholder="ID"
-              />
-              <FormTextInput
-                as={Col}
-                md={4}
-                disabled={!isLoaded}
-                label="Username:"
-                name="username"
-                placeholder="Username"
-              />
-              <FormSelect
-                as={Col}
-                md={4}
-                disabled={!isLoaded || values.group !== ADMIN}
-                label="Group:"
-                name="group"
-                placeholder="Uesr Group"
-              >
-                <option>{USER}</option>
-                <option>{ADMIN}</option>
-              </FormSelect>
-            </Form.Row>
-            <Form.Row>
-              <FormTextInput
-                as={Col}
-                md={6}
-                disabled={!isLoaded}
-                label="Email:"
-                name="email"
-                placeholder="Email"
-              />
-              <FormTextInput
-                as={Col}
-                md={6}
-                disabled={!isLoaded}
-                label="Phone:"
-                name="phone"
-                placeholder="Phone No."
-              />
-            </Form.Row>
-            <Form.Row>
-              <FormTextInput
-                as={Col}
-                md={6}
-                disabled={!isLoaded}
-                label="New Password:"
-                name="password"
-                placeholder="New Password"
-                type="password"
-              />
-              <FormTextInput
-                as={Col}
-                md={6}
-                disabled={!isLoaded}
-                label="Enter Your Password Again:"
-                name="password2"
-                placeholder="Enter Your Password Again"
-                type="password"
-              />
-            </Form.Row>
-            <Form.Row>
-              <FormTextInput
-                as={Col}
-                md={4}
-                disabled={!isLoaded}
-                type="password"
-                label="Current Password:"
-                name="oldPassword"
-                placeholder="Current Password"
-              />
-            </Form.Row>
+          <Form noValidate className="justify-content-center py-4" onSubmit={handleSubmit}>
+            <FormTextInput
+              disabled
+              label="User ID: "
+              name="id"
+              placeholder="ID"
+            />
+            <FormTextInput
+              disabled={!isLoaded}
+              label="Username:"
+              name="username"
+              placeholder="Username"
+            />
+            <FormSelect
+              disabled={!isLoaded || initialValues.group !== ADMIN}
+              label="Group:"
+              name="group"
+              placeholder="Uesr Group"
+            >
+              <option>{USER}</option>
+              <option>{ADMIN}</option>
+            </FormSelect>
+            <FormTextInput
+              disabled={!isLoaded}
+              label="Email:"
+              name="email"
+              placeholder="Email"
+            />
+            <FormTextInput
+              disabled={!isLoaded}
+              label="Phone:"
+              name="phone"
+              placeholder="Phone No."
+            />
+            <FormTextInput
+              disabled={!isLoaded}
+              label="New Password:"
+              name="password"
+              placeholder="New Password"
+              type="password"
+            />
+            <FormTextInput
+              disabled={!isLoaded}
+              label="Enter Your Password Again:"
+              name="password2"
+              placeholder="Enter Your Password Again"
+              type="password"
+            />
+            <FormTextInput
+              disabled={!isLoaded}
+              type="password"
+              label="Current Password:"
+              name="oldPassword"
+              placeholder="Current Password"
+            />
             <Form.Row className="justify-content-end">
               <Button
                 value="primary"

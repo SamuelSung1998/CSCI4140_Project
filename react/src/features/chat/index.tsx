@@ -5,7 +5,7 @@ import ChatroomPage from './ChatroomPage';
 
 const Login: React.FC = () => (
   <Switch>
-    <Route path="/chat/chatroom">
+    <Route path="/chat">
       <ChatroomPage />
     </Route>
   </Switch>

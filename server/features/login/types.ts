@@ -53,19 +53,3 @@ export interface FindUserByIdFailureType {
 
 export type FindUserByIdResultType = FindUserByIdSuccessType | FindUserByIdFailureType;
 
-// FIXME Put it under the admin folder
-export interface CreateUserSuccessType {
-  result: typeof SUCCESS;
-  payload: {
-    id: string;
-  }
-}
-
-export interface CreateUserFailureType {
-  result: typeof FAILURE;
-  payload: {
-    error: string;
-  }
-}
-
-export type CreateUserResultType = CreateUserSuccessType | CreateUserFailureType;

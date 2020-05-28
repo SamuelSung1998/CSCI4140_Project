@@ -7,13 +7,10 @@ import LoginPrompt from './PromptPage';
 
 const Login: React.FC = () => (
   <Switch>
-    <Route path="/login/user">
-      <LoginForm group="user" key="userLogin" />
-    </Route>
-    <Route path="/login/admin">
-      <LoginForm group="admin" key="adminLogin" />
-    </Route>
     <Route path="/login">
+      <LoginForm />
+    </Route>
+    <Route path="/login/prompt">
       <LoginPrompt />
     </Route>
   </Switch>

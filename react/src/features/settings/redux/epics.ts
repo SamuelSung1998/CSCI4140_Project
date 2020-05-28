@@ -7,7 +7,7 @@ import { AppState } from '../../../app/redux/root-reducer';
 import {
   settingsLoadReq, settingsLoadSuccess, settingsLoadFailure, settingsUpdateReq, settingsUpdateSuccess, settingsUpdateFailure,
 } from './slice';
-import { settingsLoadApi, settingsUpdateApi } from '../api.mock';
+import { settingsLoadApi, settingsUpdateApi } from '../api';
 import { SUCCESS, SettingsUpdateReqPayloadType } from '../types';
 
 export const settingsLoadEpic: Epic = (actions$, state$: StateObservable<AppState>) => actions$.pipe(

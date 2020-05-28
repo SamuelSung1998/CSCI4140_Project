@@ -1,8 +1,7 @@
-// State Keywords
+// Status Keywords
+export const IDLE = 'idle';
+export const LOADING = 'loading';
+export const SUCCESS = 'success';
+export const FAILURE = 'failure';
 
-export const IDLE = 'IDLE';
-export const PROCESSING = 'PROCESSING';
-export const SUCCESS = 'SUCCESS';
-export const FAILED = 'FAILED';
-
-export type ProcessStateType = typeof IDLE | typeof PROCESSING | typeof SUCCESS | typeof FAILED;
+export type StatusType = typeof IDLE | typeof LOADING | typeof SUCCESS | typeof FAILURE;

@@ -1,233 +1,261 @@
-import React from 'react';
-import {
-  Container, Row, Col, Card,
-} from 'react-bootstrap';
+import React, { useEffect } from 'react';
+import { Container, Button } from 'react-bootstrap';
 
 import './ChatroomPage.css';
+import { useSelector, useDispatch } from 'react-redux';
+import { AppState } from '../../app/redux/root-reducer';
+import { connectionReq, sendMessageReq } from './redux/slice';
+import { FAILURE, IDLE } from './types';
 
 const ChatroomPage = () => {
-  const tmp = 1;
+  const chats = useSelector((state: AppState) => state.chat.chats);
+  const status = useSelector((state:AppState) => state.chat.status);
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    if (status.connection === IDLE || status.connection === FAILURE) dispatch(connectionReq());
+  }, [dispatch, status.connection]);
+
+  const handleSend = () => {
+    dispatch(sendMessageReq({ value: '123' }));
+  };
   return (
-    <Container fluid="lg" className="chatroom flex-fill">
-      {/* center the chatroom */}
-      <Row className="justify-content-center h-100">
-        <Col md="8" xl="9" className="my-2">
-          <Card className="h-100">
-            <Card.Header>
-              header
-            </Card.Header>
-            <Card.Body>
-              body
-            </Card.Body>
-          </Card>
-        </Col>
-        <Col md="4" xl="3">
-          <Row className="h-50">
-            <div className="my-2 w-100">
-              <Card className="h-100">
-                <Card.Header>
-                  header
-                </Card.Header>
-                <Card.Body>
-                  body
-                </Card.Body>
-              </Card>
+
+    <Container>
+      <h1>Messaging</h1>
+      <div className="messaging">
+        <div className="inbox_msg">
+          <div className="inbox_people">
+            <div className="headind_srch">
+              <div className="recent_heading">
+                <h4>Recent</h4>
+              </div>
+              <div className="srch_bar">
+                <div className="stylish-input-group">
+                  <input type="text" className="search-bar" placeholder="Search" />
+                  <span className="input-group-addon">
+                    <button type="button">
+                      <i className="fa fa-search" aria-hidden="true" />
+                    </button>
+                  </span>
+                </div>
+              </div>
             </div>
-          </Row>
-          <Row className="h-50">
-            <div className="my-2 w-100">
-              <Card className="h-100">
-                <Card.Header>
-                  header
-                </Card.Header>
-                <Card.Body>
-                  body
-                </Card.Body>
-              </Card>
+            <div className="inbox_chat">
+              <div className="chat_list active_chat">
+                <div className="chat_people">
+                  <div className="chat_img">
+                    {' '}
+                    <img src="https://ptetutorials.com/images/user-profile.png" alt="sunil" />
+                    {' '}
+                  </div>
+                  <div className="chat_ib">
+                    <h5>
+                      Sunil Rajput
+                      <span className="chat_date">Dec 25</span>
+                    </h5>
+                    <p>
+                      Test, which is a new approach to have all solutions
+                      astrology under one roof.
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <div className="chat_list">
+                <div className="chat_people">
+                  <div className="chat_img">
+                    {' '}
+                    <img src="https://ptetutorials.com/images/user-profile.png" alt="sunil" />
+                    {' '}
+                  </div>
+                  <div className="chat_ib">
+                    <h5>
+                      Sunil Rajput
+                      <span className="chat_date">Dec 25</span>
+                    </h5>
+                    <p>
+                      Test, which is a new approach to have all solutions
+                      astrology under one roof.
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <div className="chat_list">
+                <div className="chat_people">
+                  <div className="chat_img">
+                    {' '}
+                    <img src="https://ptetutorials.com/images/user-profile.png" alt="sunil" />
+                    {' '}
+                  </div>
+                  <div className="chat_ib">
+                    <h5>
+                      Sunil Rajput
+                      <span className="chat_date">Dec 25</span>
+                    </h5>
+                    <p>
+                      Test, which is a new approach to have all solutions
+                      astrology under one roof.
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <div className="chat_list">
+                <div className="chat_people">
+                  <div className="chat_img">
+                    {' '}
+                    <img src="https://ptetutorials.com/images/user-profile.png" alt="sunil" />
+                    {' '}
+                  </div>
+                  <div className="chat_ib">
+                    <h5>
+                      Sunil Rajput
+                      <span className="chat_date">Dec 25</span>
+                    </h5>
+                    <p>
+                      Test, which is a new approach to have all solutions
+                      astrology under one roof.
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <div className="chat_list">
+                <div className="chat_people">
+                  <div className="chat_img">
+                    {' '}
+                    <img src="https://ptetutorials.com/images/user-profile.png" alt="sunil" />
+                    {' '}
+                  </div>
+                  <div className="chat_ib">
+                    <h5>
+                      Sunil Rajput
+                      <span className="chat_date">Dec 25</span>
+                    </h5>
+                    <p>
+                      Test, which is a new approach to have all solutions
+                      astrology under one roof.
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <div className="chat_list">
+                <div className="chat_people">
+                  <div className="chat_img">
+                    {' '}
+                    <img src="https://ptetutorials.com/images/user-profile.png" alt="sunil" />
+                    {' '}
+                  </div>
+                  <div className="chat_ib">
+                    <h5>
+                      Sunil Rajput
+                      <span className="chat_date">Dec 25</span>
+                    </h5>
+                    <p>
+                      Test, which is a new approach to have all solutions
+                      astrology under one roof.
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <div className="chat_list">
+                <div className="chat_people">
+                  <div className="chat_img">
+                    {' '}
+                    <img src="https://ptetutorials.com/images/user-profile.png" alt="sunil" />
+                    {' '}
+                  </div>
+                  <div className="chat_ib">
+                    <h5>
+                      Sunil Rajput
+                      <span className="chat_date">Dec 25</span>
+                    </h5>
+                    <p>
+                      Test, which is a new approach to have all solutions
+                      astrology under one roof.
+                    </p>
+                  </div>
+                </div>
+              </div>
             </div>
-          </Row>
-        </Col>
-      </Row>
+          </div>
+          <div className="mesgs">
+            <div className="msg_history">
+              <div className="incoming_msg">
+                <div className="incoming_msg_img">
+                  {' '}
+                  <img src="https://ptetutorials.com/images/user-profile.png" alt="sunil" />
+                  {' '}
+                </div>
+                <div className="received_msg">
+                  <div className="received_withd_msg">
+                    <p>
+                      Test which is a new approach to have all
+                      solutions
+                    </p>
+                    <span className="time_date"> 11:01 AM    |    June 9</span>
+                  </div>
+                </div>
+              </div>
+              <div className="outgoing_msg">
+                <div className="sent_msg">
+                  <p>
+                    Test which is a new approach to have all
+                    solutions
+                  </p>
+                  <span className="time_date"> 11:01 AM    |    June 9</span>
+                  {' '}
+
+                </div>
+              </div>
+              <div className="incoming_msg">
+                <div className="incoming_msg_img">
+                  {' '}
+                  <img src="https://ptetutorials.com/images/user-profile.png" alt="sunil" />
+                  {' '}
+                </div>
+                <div className="received_msg">
+                  <div className="received_withd_msg">
+                    <p>Test, which is a new approach to have</p>
+                    <span className="time_date"> 11:01 AM    |    Yesterday</span>
+                  </div>
+                </div>
+              </div>
+              <div className="outgoing_msg">
+                <div className="sent_msg">
+                  <p>Apollo University, Delhi, India Test</p>
+                  <span className="time_date"> 11:01 AM    |    Today</span>
+                  {' '}
+
+                </div>
+              </div>
+              <div className="incoming_msg">
+                <div className="incoming_msg_img">
+                  {' '}
+                  <img src="https://ptetutorials.com/images/user-profile.png" alt="sunil" />
+                  {' '}
+                </div>
+                <div className="received_msg">
+                  <div className="received_withd_msg">
+                    <p>
+                      We work directly with our designers and suppliers,
+                      and sell direct to you, which means quality, exclusive
+                      products, at a price anyone can afford.
+                    </p>
+                    <span className="time_date"> 11:01 AM    |    Today</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className="type_msg">
+              <div className="input_msg_write">
+                <input type="text" className="write_msg" placeholder="Type a message" />
+                <Button className="msg_send_btn" onClick={handleSend}><i className="fa fa-paper-plane-o" aria-hidden="true" /></Button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </Container>
-  //         <div class="col-md-4 col-xl-3 chat"><div class="card mb-sm-3 mb-md-0 contacts_card">
-  //           <div class="card-header">
-  //             <div class="input-group">
-  //               <input type="text" placeholder="Search..." name="" class="form-control search">
-  //               <div class="input-group-prepend">
-  //                 <span class="input-group-text search_btn"><i class="fas fa-search"></i></span>
-  //               </div>
-  //             </div>
-  //           </div>
-  //           <div class="card-body contacts_body">
-  //             <ui class="contacts">
-  //             <li class="active">
-  //               <div class="d-flex bd-highlight">
-  //                 <div class="img_cont">
-  //                   <img src="https://static.turbosquid.com/Preview/001292/481/WV/_D.jpg" class="rounded-circle user_img">
-  //                   <span class="online_icon"></span>
-  //                 </div>
-  //                 <div class="user_info">
-  //                   <span>Khalid</span>
-  //                   <p>Kalid is online</p>
-  //                 </div>
-  //               </div>
-  //             </li>
-  //             <li>
-  //               <div class="d-flex bd-highlight">
-  //                 <div class="img_cont">
-  //                   <img src="https://2.bp.blogspot.com/-8ytYF7cfPkQ/WkPe1-rtrcI/AAAAAAAAGqU/FGfTDVgkcIwmOTtjLka51vineFBExJuSACLcBGAs/s320/31.jpg" class="rounded-circle user_img">
-  //                   <span class="online_icon offline"></span>
-  //                 </div>
-  //                 <div class="user_info">
-  //                   <span>Taherah Big</span>
-  //                   <p>Taherah left 7 mins ago</p>
-  //                 </div>
-  //               </div>
-  //             </li>
-  //             <li>
-  //               <div class="d-flex bd-highlight">
-  //                 <div class="img_cont">
-  //                   <img src="https://i.pinimg.com/originals/ac/b9/90/acb990190ca1ddbb9b20db303375bb58.jpg" class="rounded-circle user_img">
-  //                   <span class="online_icon"></span>
-  //                 </div>
-  //                 <div class="user_info">
-  //                   <span>Sami Rafi</span>
-  //                   <p>Sami is online</p>
-  //                 </div>
-  //               </div>
-  //             </li>
-  //             <li>
-  //               <div class="d-flex bd-highlight">
-  //                 <div class="img_cont">
-  //                   <img src="http://profilepicturesdp.com/wp-content/uploads/2018/07/sweet-girl-profile-pictures-9.jpg" class="rounded-circle user_img">
-  //                   <span class="online_icon offline"></span>
-  //                 </div>
-  //                 <div class="user_info">
-  //                   <span>Nargis Hawa</span>
-  //                   <p>Nargis left 30 mins ago</p>
-  //                 </div>
-  //               </div>
-  //             </li>
-  //             <li>
-  //               <div class="d-flex bd-highlight">
-  //                 <div class="img_cont">
-  //                   <img src="https://static.turbosquid.com/Preview/001214/650/2V/boy-cartoon-3D-model_D.jpg" class="rounded-circle user_img">
-  //                   <span class="online_icon offline"></span>
-  //                 </div>
-  //                 <div class="user_info">
-  //                   <span>Rashid Samim</span>
-  //                   <p>Rashid left 50 mins ago</p>
-  //                 </div>
-  //               </div>
-  //             </li>
-  //             </ui>
-  //           </div>
-  //           <div class="card-footer"></div>
-  //         </div></div>
-  //         <div class="col-md-8 col-xl-6 chat">
-  //           <div class="card">
-  //             <div class="card-header msg_head">
-  //               <div class="d-flex bd-highlight">
-  //                 <div class="img_cont">
-  //                   <img src="https://static.turbosquid.com/Preview/001292/481/WV/_D.jpg" class="rounded-circle user_img">
-  //                   <span class="online_icon"></span>
-  //                 </div>
-  //                 <div class="user_info">
-  //                   <span>Chat with Khalid</span>
-  //                   <p>1767 Messages</p>
-  //                 </div>
-  //                 <div class="video_cam">
-  //                   <span><i class="fas fa-video"></i></span>
-  //                   <span><i class="fas fa-phone"></i></span>
-  //                 </div>
-  //               </div>
-  //               <span id="action_menu_btn"><i class="fas fa-ellipsis-v"></i></span>
-  //               <div class="action_menu">
-  //                 <ul>
-  //                   <li><i class="fas fa-user-circle"></i> View profile</li>
-  //                   <li><i class="fas fa-users"></i> Add to close friends</li>
-  //                   <li><i class="fas fa-plus"></i> Add to group</li>
-  //                   <li><i class="fas fa-ban"></i> Block</li>
-  //                 </ul>
-  //               </div>
-  //             </div>
-  //             <div class="card-body msg_card_body">
-  //               <div class="d-flex justify-content-start mb-4">
-  //                 <div class="img_cont_msg">
-  //                   <img src="https://static.turbosquid.com/Preview/001292/481/WV/_D.jpg" class="rounded-circle user_img_msg">
-  //                 </div>
-  //                 <div class="msg_cotainer">
-  //                   Hi, how are you samim?
-  //                   <span class="msg_time">8:40 AM, Today</span>
-  //                 </div>
-  //               </div>
-  //               <div class="d-flex justify-content-end mb-4">
-  //                 <div class="msg_cotainer_send">
-  //                   Hi Khalid i am good tnx how about you?
-  //                   <span class="msg_time_send">8:55 AM, Today</span>
-  //                 </div>
-  //                 <div class="img_cont_msg">
-  //                 </div>
-  //               </div>
-  //               <div class="d-flex justify-content-start mb-4">
-  //                 <div class="img_cont_msg">
-  //                   <img src="https://static.turbosquid.com/Preview/001292/481/WV/_D.jpg" class="rounded-circle user_img_msg">
-  //                 </div>
-  //                 <div class="msg_cotainer">
-  //                   I am good too, thank you for your chat template
-  //                   <span class="msg_time">9:00 AM, Today</span>
-  //                 </div>
-  //               </div>
-  //               <div class="d-flex justify-content-end mb-4">
-  //                 <div class="msg_cotainer_send">
-  //                   You are welcome
-  //                   <span class="msg_time_send">9:05 AM, Today</span>
-  //                 </div>
-  //                 <div class="img_cont_msg">
-  //                 </div>
-  //               </div>
-  //               <div class="d-flex justify-content-start mb-4">
-  //                 <div class="img_cont_msg">
-  //                   <img src="https://static.turbosquid.com/Preview/001292/481/WV/_D.jpg" class="rounded-circle user_img_msg">
-  //                 </div>
-  //                 <div class="msg_cotainer">
-  //                   I am looking for your next templates
-  //                   <span class="msg_time">9:07 AM, Today</span>
-  //                 </div>
-  //               </div>
-  //               <div class="d-flex justify-content-end mb-4">
-  //                 <div class="msg_cotainer_send">
-  //                   Ok, thank you have a good day
-  //                   <span class="msg_time_send">9:10 AM, Today</span>
-  //                 </div>
-  //                 <div class="img_cont_msg">
-  //                 </div>
-  //               </div>
-  //               <div class="d-flex justify-content-start mb-4">
-  //                 <div class="img_cont_msg">
-  //                   <img src="https://static.turbosquid.com/Preview/001292/481/WV/_D.jpg" class="rounded-circle user_img_msg">
-  //                 </div>
-  //                 <div class="msg_cotainer">
-  //                   Bye, see you
-  //                   <span class="msg_time">9:12 AM, Today</span>
-  //                 </div>
-  //               </div>
-  //             </div>
-  //             <div class="card-footer">
-  //               <div class="input-group">
-  //                 <div class="input-group-append">
-  //                   <span class="input-group-text attach_btn"><i class="fas fa-paperclip"></i></span>
-  //                 </div>
-  //                 <textarea name="" class="form-control type_msg" placeholder="Type your message..."></textarea>
-  //                 <div class="input-group-append">
-  //                   <span class="input-group-text send_btn"><i class="fas fa-location-arrow"></i></span>
-  //                 </div>
-  //               </div>
-  //             </div>
-  //           </div>
-  //         </div>
-  //       </div>
-  //     </div>
   );
 };
 

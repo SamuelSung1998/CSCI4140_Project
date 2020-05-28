@@ -38,7 +38,10 @@ type StatusType = typeof IDLE | typeof LOADING | typeof SUCCESS | typeof FAILURE
 
 // Login State Interface
 export interface LoginStateType {
-  status: StatusType;
+  status: {
+    login: StatusType;
+    recoverLogin: StatusType;
+  }
   username: string;
   group: GroupType;
   token: string;
@@ -48,7 +51,6 @@ export interface LoginStateType {
 export interface LoginReqPayloadType {
   email: string;
   password: string;
-  group: GroupType;
   keepLogin: boolean;
 }
 
@@ -60,4 +62,10 @@ export interface LoginSuccessPayloadType {
 
 export interface LoginFailPayloadType {
   errors: LoginErrorType[],
+}
+
+export interface RecoverLoginSuccessPayloadType {
+  username: string;
+  token: string;
+  group: GroupType;
 }

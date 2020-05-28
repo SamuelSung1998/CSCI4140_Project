@@ -7,7 +7,7 @@ import {
 } from 'react-bootstrap';
 import { useFormik } from 'formik';
 
-import { GroupType, FAILURE } from './types';
+import { FAILURE } from './types';
 import { loginReq, loginFailureReset } from './redux/slice';
 import { AppState } from '../../app/redux/root-reducer';
 
@@ -35,22 +35,14 @@ const initialValues: FormType = {
   keepLogin: false,
 };
 
-interface LoginFormProps {
-  group: GroupType;
-}
-
-
-const LoginForm: React.FC<LoginFormProps> = ({ group }) => {
+const LoginForm: React.FC = () => {
   const match = useRouteMatch();
   const dispatch = useDispatch();
 
   const status = useSelector((state: AppState) => state.login.status);
 
   const handleLogin = (values: FormType) => {
-    dispatch(loginReq({
-      ...values,
-      group,
-    }));
+    dispatch(loginReq(values));
   };
 
   const formik = useFormik({
@@ -67,9 +59,9 @@ const LoginForm: React.FC<LoginFormProps> = ({ group }) => {
     <Container>
       <Form className="form-custom" onSubmit={formik.handleSubmit}>
         <h1 className="form-message">
-          {`Login as ${group}`}
+          Login
         </h1>
-        {status === FAILURE && (
+        {status.login === FAILURE && (
           <Alert variant="danger">
             Login failed, please try again.
           </Alert>

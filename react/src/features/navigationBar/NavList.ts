@@ -33,74 +33,15 @@ const NavList: NavListType = [
   {
     name: 'Login',
     id: 'login',
+    address: '/login',
     groups: [LOGGEDOUT],
     float: right,
-    subtab: [
-      {
-        name: 'User',
-        id: 'login-user',
-        address: '/login/user',
-      },
-      {
-        name: 'Admin',
-        id: 'login-admin',
-        address: '/login/admin',
-      },
-    ],
   },
   {
-    name: 'Applications',
-    id: 'applications-student',
-    groups: [USER],
-    float: left,
-    subtab: [
-      {
-        name: 'Available Applications',
-        id: 'applications-student-available',
-        address: '/applications/available',
-      },
-      {
-        name: 'Saved Applications',
-        id: 'applications-student-saved',
-        address: '/applications/saved',
-      },
-      {
-        name: 'Submitted',
-        id: 'applications-student-submitted',
-        address: '/applications/submitted',
-      },
-    ],
-  },
-  {
-    name: 'Contact Admin',
-    id: 'contact-student',
-    address: '/contact',
-    groups: [USER],
-    float: left,
-  },
-  {
-    name: 'Applications',
-    id: 'applications-admin',
-    groups: [ADMIN],
-    float: left,
-    subtab: [
-      {
-        name: 'Application List',
-        id: 'applications-list',
-        address: '/applications/admin-list',
-      },
-      {
-        name: 'Dashboard',
-        id: 'applications-admin-dashboard',
-        address: '/applications/dashboard',
-      },
-    ],
-  },
-  {
-    name: 'Contact Student',
-    id: 'contact-admin',
-    address: '/contact',
-    groups: [ADMIN],
+    name: 'Chatroom',
+    id: 'chat',
+    address: '/chat',
+    groups: [ADMIN, USER],
     float: left,
   },
   {
